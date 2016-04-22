@@ -1,0 +1,15 @@
+{% load render_table from django_tables2 %}
+<html>
+<body>
+<form method='GET'>
+    {{ filter.form }}
+    <input type='submit' value='Filter' />
+    |
+    Displaying {{ filter.qs|length }} of {{ filter.queryset|length }} items.
+    |
+    <a href='{{ request.path }}' >Clear</a>
+</form>
+{% render_table table %}
+
+</body>
+</html>
