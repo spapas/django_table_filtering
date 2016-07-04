@@ -1,6 +1,6 @@
-Django==1.9.5
-Werkzeug==0.11.8
-django-extensions==1.6.1
+Django==1.9.7
+django-extensions==1.6.7
 django-filter==0.13.0
-django-tables2==1.1.6
+django-tables2==1.2.2
 six==1.10.0
+Werkzeug==0.11.10
