@@ -12,7 +12,7 @@ class FilteredSingleTableView(django_tables2.SingleTableView):
     def get_table_data(self):
         data = super(FilteredSingleTableView, self).get_table_data()
         self.filter = self.filter_class(self.request.GET, queryset=data)
-        return self.filter
+        return self.filter.qs
 
     def get_context_data(self, **kwargs):
         context = super(FilteredSingleTableView, self).get_context_data(**kwargs)
@@ -37,13 +37,13 @@ class FilteredTableView(ListView):
     def get_context_data(self, **kwargs):
         context = super(FilteredTableView, self).get_context_data(**kwargs)
         filter = books.filters.BookFilter(self.request.GET, queryset=self.object_list)
-        table = books.tables.BookTable(filter)
-        django_tables2.RequestConfig(self.request).configure(table )
+        
+        table = books.tables.BookTable(filter.qs)
+        django_tables2.RequestConfig(self.request, ).configure(table )
 
         context['filter'] = filter
         context['table'] = table
         return context
-        
     
 
 class FilteredListView(ListView):
@@ -52,7 +52,8 @@ class FilteredListView(ListView):
     def get_context_data(self, **kwargs):
         context = super(FilteredListView, self).get_context_data(**kwargs)
         filter = books.filters.BookFilter(self.request.GET, queryset=self.object_list)
-        
+        from django.core.paginator import Paginator
+        p = Paginator(filter.qs, 25)
         context['filter'] = filter
         
         return context

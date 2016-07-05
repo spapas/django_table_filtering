@@ -5,7 +5,7 @@
     {{ filter.form }}
     <input type='submit' value='Filter' />
     |
-    Displaying {{ filter.qs|length }} of {{ filter.queryset|length }} items.
+    Displaying {{ filter.qs.count }} of {{ filter.queryset.count }} items.
     |
     <a href='{{ request.path }}' >Clear</a>
 </form>
