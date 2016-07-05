@@ -14,7 +14,6 @@ class FilteredSingleTableView(django_tables2.SingleTableView):
         self.filter = self.filter_class(self.request.GET, queryset=data)
         return self.filter
 
-
     def get_context_data(self, **kwargs):
         context = super(FilteredSingleTableView, self).get_context_data(**kwargs)
         context['filter'] = self.filter
@@ -38,7 +37,6 @@ class FilteredTableView(ListView):
     def get_context_data(self, **kwargs):
         context = super(FilteredTableView, self).get_context_data(**kwargs)
         filter = books.filters.BookFilter(self.request.GET, queryset=self.object_list)
-
         table = books.tables.BookTable(filter)
         django_tables2.RequestConfig(self.request).configure(table )
 
