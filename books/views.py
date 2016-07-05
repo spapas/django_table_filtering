@@ -24,3 +24,8 @@ class BookFilteredSingleTableView(FilteredSingleTableView):
     model = books.models.Book
     table_class = books.tables.BookTable
     filter_class = books.filters.BookFilter
+    
+    
+class BookSingleTableView(django_tables2.SingleTableView):
+    model = books.models.Book
+    table_class = books.tables.BookTable
