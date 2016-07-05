@@ -3,6 +3,7 @@ django-debug-toolbar==1.4
 django-extensions==1.6.7
 django-filter==0.13.0
 django-tables2==1.2.2
+psycopg2==2.6.1
 six==1.10.0
 sqlparse==0.1.19
 Werkzeug==0.11.10
