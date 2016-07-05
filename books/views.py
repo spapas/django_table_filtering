@@ -43,3 +43,17 @@ class FilteredTableView(ListView):
         context['filter'] = filter
         context['table'] = table
         return context
+        
+    
+
+class FilteredListView(ListView):
+    model = books.models.Book
+
+    def get_context_data(self, **kwargs):
+        context = super(FilteredListView, self).get_context_data(**kwargs)
+        filter = books.filters.BookFilter(self.request.GET, queryset=self.object_list)
+        
+        context['filter'] = filter
+        
+        return context
+

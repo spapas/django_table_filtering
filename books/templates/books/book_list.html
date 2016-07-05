@@ -9,7 +9,9 @@
     |
     <a href='{{ request.path }}' >Clear</a>
 </form>
-{% render_table table %}
+{% if table %}
+    {% render_table table %}
+{% endif %}
 
 </body>
 </html>
