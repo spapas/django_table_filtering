@@ -44,17 +44,19 @@ class FilteredTableView(ListView):
         context['filter'] = filter
         context['table'] = table
         return context
-    
 
-class FilteredListView(ListView):
+
+class FilterExListView(ListView):
     model = books.models.Book
 
     def get_context_data(self, **kwargs):
-        context = super(FilteredListView, self).get_context_data(**kwargs)
-        filter = books.filters.BookFilter(self.request.GET, queryset=self.object_list)
-        from django.core.paginator import Paginator
-        p = Paginator(filter.qs, 25)
+        context = super(FilterExListView, self).get_context_data(**kwargs)
+        filter = books.filters.BookFilterEx(self.request.GET, queryset=self.object_list)
+        
+        table = books.tables.BookTable(filter.qs)
+        django_tables2.RequestConfig(self.request, ).configure(table )
+
         context['filter'] = filter
+        context['table'] = table
         
         return context
-

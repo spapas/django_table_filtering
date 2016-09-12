@@ -16,13 +16,13 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 
-from books.views import BookFilteredSingleTableView, BookSingleTableView, FilteredTableView, FilteredListView
+from books.views import BookFilteredSingleTableView, BookSingleTableView, FilteredTableView, FilterExListView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
 
     url(r'^$', BookFilteredSingleTableView.as_view() ),
     url(r'^nofilter/$', BookSingleTableView.as_view() ),
-    url(r'^notable/$', FilteredListView.as_view() ),
     url(r'^filter2/$', FilteredTableView.as_view() ),
+    url(r'^filter_ex/$', FilterExListView.as_view() ),
 ]
