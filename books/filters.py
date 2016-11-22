@@ -6,13 +6,14 @@ import itertools
 class BookFilter(django_filters.FilterSet):
     class Meta:
         model = books.models.Book
+        exclude = ()
 
         
 class BookFilterEx(django_filters.FilterSet):
-    ex = django_filters.MethodFilter()
+    ex = django_filters.CharFilter(label='Ex filter', method='filter_ex')
     search_fields = ['title', 'author', 'category', 'id', ]
 
-    def filter_ex(self, qs, value):
+    def filter_ex(self, qs, name, value):
         if value:
             q_parts = value.split()
             
