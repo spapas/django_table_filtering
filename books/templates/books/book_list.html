@@ -1,17 +1,40 @@
 {% load render_table from django_tables2 %}
 <html>
-<body>
-<form method='GET'>
-    {{ filter.form }}
-    <input type='submit' value='Filter' />
-    |
-    Displaying {{ filter.qs.count }} of {{ filter.queryset.count }} items.
-    |
-    <a href='{{ request.path }}' >Clear</a>
-</form>
-{% if table %}
-    {% render_table table %}
-{% endif %}
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdn.tailwindcss.com"></script>
+        <style>
+            input {
+                padding-left: 5px !important;
+                padding-right: 5px !important;
+                margin: 1px !important;
+                border: 1pt solid black;
+            }
+        </style>
+    </head>
+    <body>
+        <div class='container mx-auto'>
+            <div>
+                <a class="font-medium text-blue-600 dark:text-blue-500 hover:underline" href='/' >Filter</a> | 
+                <a class="font-medium text-blue-600 dark:text-blue-500 hover:underline" href='/filter2/' >Filter2</a> | 
+                <a class="font-medium text-blue-600 dark:text-blue-500 hover:underline" href='/filter_ex/' >FilterEx</a> | 
+                <a class="font-medium text-blue-600 dark:text-blue-500 hover:underline" href='/nofilter/' >NoFilter</a>
+            </div>
 
-</body>
+            {% if filter.form %}
+                <form method='GET'>
+                    {{ filter.form }}
+                    <input type='submit' value='Filter' class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded" />
+                    |
+                    Displaying {{ filter.qs.count }} of {{ filter.queryset.count }} items.
+                    |
+                    <a class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded"  href='{{ request.path }}' >Clear</a>
+                </form>
+            {% endif %}
+            {% if table %}
+                {% render_table table %}
+            {% endif %}
+        </div>
+    </body>
 </html>

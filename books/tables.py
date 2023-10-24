@@ -4,3 +4,5 @@ from books.models import Book
 class BookTable(tables.Table):
     class Meta:
         model = Book
+        
+        attrs = {"class": "table-auto"}
